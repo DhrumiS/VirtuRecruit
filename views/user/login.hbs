@@ -1,0 +1,85 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <form action="/user/login" method="post" id="loginForm">
+        <div id="SIGN IN" class="sign-up">
+            <div class="box1">
+                <img src="/images/virturecruit.png" alt="" width="300px" />
+            </div>
+            <div class="box2">
+                <h3>LOGIN</h3>
+                <input type="text" name="email" placeholder="Email" id="email" />
+                <input type="password" name="password" placeholder="Password" id="password" />
+
+                <button type="submit" class="btn">
+                    Next
+                </button>
+                <div class="straght-line">
+                    <div class="line3"></div>
+                    <h6 class="text">OR</h6>
+                    <div class="line4"></div>
+                    <br />
+                    <h4>Don't have an account?</h4>
+                </div>
+                <button class="btn2">
+                    <a href="http://localhost:3000/user/register">Create Account</a>
+                </button>
+
+                <div id="text1">By registering, You agree to the</div>
+                <div id="text2">Terms, Conditions and Policies of Borcelle</div>
+                <div id="text3">& Privacy Policy</div>
+                <br />
+                <p id="text4">
+                    <a href="/hr/login">Login as Recruiter</a>
+                </p>
+            </div>
+        </div>
+    </form>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function () {
+        $("#loginForm").on("submit", function
+            (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            $.ajax({
+                url: '/user/login',
+                method: 'post',
+                data: JSON.stringify({
+                    email: $('#email').val(),
+                    password: $('#password').val(),
+                }),
+                contentType: 'application/json',
+                success: function (response) {
+                    console.log(response)
+                    if (response.type == 'error') {
+                        toastr.error(response.message)
+                    }
+                    if (response.type == 'success') {
+                        location.href = response.message
+                    }
+                },
+                error: function (error) {
+                    toastr.error("Something went wrong")
+                },
+            });
+        });
+    });
+</script>
+
+</html>

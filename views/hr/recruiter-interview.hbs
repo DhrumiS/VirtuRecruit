@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Upcoming Interviews-VirtueRecruit</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/rstyle.css" />
+    <script src="/.js" defer></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-fixed-top">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li > <li ><a href="/hr/dashboard">Dashboard</a></li>
+                <li class="active"><a href="/hr/interview">Interview</a></li>
+                <li><a href="/hr/postjob">My Profile</a></li>
+                <li><a href="/hr/job">Jobs</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/hr/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid" style="padding-top: 80px">
+      <div class="row content">
+        <div class="col-sm-12 text-center line">
+          <h4>Upcoming Interviews</h4>
+        </div>
+
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">Interview Details</div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Candidate</th>
+                      <th>Job Post</th>
+                      <th>Skills</th>
+                      <th>Contact</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Interview rows -->
+                    <tr>
+                      <td>01/15/2024</td>
+                      <td>10:00 AM</td>
+                      <td>Karan Sharma</td>
+                      <td>Python Developer</td>
+                      <td>Python, Django, SQL</td>
+                      <td>karan@example.com<br />123-456-7890</td>
+                      <td>
+                        <a href="/demo_resume.pdf"> <button
+                          class="btn btn-primary"
+                          data-toggle="modal"
+                          data-target="#viewResumeModal"
+                        >
+                          View Resume
+                        </button></a>
+                        <button class="btn btn-danger">Cancel</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>01/16/2024</td>
+                      <td>2:00 PM</td>
+                      <td>Dhrumi Vaidya</td>
+                      <td>Frontend Developer</td>
+                      <td>HTML, CSS, JavaScript</td>
+                      <td>dhrumi@example.com<br />987-654-3210</td>
+                      <td>
+                       <a href="/demo_resume.pdf"> <button
+                          class="btn btn-primary"
+                          data-toggle="modal"
+                          data-target="#viewResumeModal"
+                        >
+                          View Resume
+                        </button></a>
+                        <button class="btn btn-danger">Cancel</button>
+                      </td>
+                    </tr>
+                    <!-- Add more upcoming interviews as needed -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Table for Reviewing Tests -->
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">Test Review</div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Candidate</th>
+                      <th>Test Name</th>
+                      <th>Checking Status</th>
+                      <th>Score</th>
+                      <th>Eligibility</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Karan Sharma</td>
+                      <td>Python Test</td>
+                      <td>Under Review</td>
+                      <td>65%</td>
+                      <td>Not Eligible</td>
+                      <td>
+                        <a href="/hr/reviewtest"
+                          ><button
+                            class="btn btn-info"
+                            data-toggle="modal"
+                            data-target="#reviewTestModal"
+                          >
+                            Review Test
+                          </button></a
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Dhrumi Vaidya</td>
+                      <td>Frontend Test</td>
+                      <td>Reviewed</td>
+                      <td>95%</td>
+                      <td>Eligible</td>
+                      <td>
+                        <a href="/hr/reviewtest"
+                          ><button
+                            class="btn btn-info"
+                            data-toggle="modal"
+                            data-target="#reviewTestModal"
+                          >
+                            Review Test
+                          </button></a
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

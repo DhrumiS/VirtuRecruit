@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+    <title>Interviews Scheduled</title>
+    <link rel="stylesheet" href="/rstyle.css" />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 80%;
+        margin-top: 70px;
+      }
+      .header {
+        background-color: #6d7a9b;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+      .header h1 {
+        margin: 0;
+      }
+      .dashboard-metrics,
+      .interview-table,
+      .scheduled-table {
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      .dashboard-metrics h2,
+      .interview-table h2,
+      .scheduled-table h2 {
+        margin: 0 0 20px 0;
+        color: #333;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 15px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+      }
+      .button:hover {
+        background-color: #0056b3;
+      }
+      .card {
+        display: none;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+    </style>
+
+        <script src="recruiter.js" defer></script>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-fixed-top">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+             <li class="active"><a href="/hr/dashboard">Dashboard</a></li>
+                <li><a href="/hr/interview">Interview</a></li>
+                <li><a href="/hr/profile">My Profile</a></li>
+                <li><a href="/hr/job">Jobs</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/hr/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="header">
+        <h1>Interviews Scheduled</h1>
+      </div>
+      <br />
+      <div class="interview-table">
+        <h2>Applications Received</h2>
+        <table id="applicationsTable">
+          <tr>
+            <th>Candidate Name</th>
+            <th>Position</th>
+            <th>Date Applied</th>
+            <th>Actions</th>
+          </tr>
+          <!-- Example rows -->
+          <tr>
+            <td>Jane Doe</td>
+            <td>Java Developer</td>
+            <td>06/01/2024</td>
+            <td>
+              <button
+                class="button"
+                onclick="scheduleInterview('Jane Doe', 'Java Developer')"
+              >
+                Schedule Interview
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Michael Smith</td>
+            <td>Data Scientist</td>
+            <td>05/29/2024</td>
+            <td>
+              <button
+                class="button"
+                onclick="scheduleInterview('Michael Smith', 'Data Scientist')"
+              >
+                Schedule Interview
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Emily Davis</td>
+            <td>Frontend Developer</td>
+            <td>05/28/2024</td>
+            <td>
+              <button
+                class="button"
+                onclick="scheduleInterview('Emily Davis', 'Frontend Developer')"
+              >
+                Schedule Interview
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>David Brown</td>
+            <td>Backend Developer</td>
+            <td>05/27/2024</td>
+            <td>
+              <button
+                class="button"
+                onclick="scheduleInterview('David Brown', 'Backend Developer')"
+              >
+                Schedule Interview
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Sarah Johnson</td>
+            <td>DevOps Engineer</td>
+            <td>05/26/2024</td>
+            <td>
+              <button
+                class="button"
+                onclick="scheduleInterview('Sarah Johnson', 'DevOps Engineer')"
+              >
+                Schedule Interview
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card" id="scheduleCard">
+        <h2>Schedule Interview</h2>
+        <form id="scheduleForm" onsubmit="addScheduledInterview(event)">
+          <label for="candidateName">Candidate Name:</label><br />
+          <input
+            type="text"
+            id="candidateName"
+            name="candidateName"
+            readonly
+          /><br /><br />
+          <label for="position">Position:</label><br />
+          <input
+            type="text"
+            id="position"
+            name="position"
+            readonly
+          /><br /><br />
+          <label for="date">Date:</label><br />
+          <input type="date" id="date" name="date" required /><br /><br />
+          <label for="time">Time:</label><br />
+          <input type="time" id="time" name="time" required /><br /><br />
+          <label for="meeting_link">Meeting Link</label><br />
+          <input
+            type="url"
+            id="meeting"
+            name="meeting" placeholder="Enter Goolge Meet link"
+            required
+          /><br /><br />
+          <button type="submit" class="button">Schedule</button>
+          <button type="button" class="button" onclick="cancelSchedule()">
+            Cancel
+          </button>
+        </form>
+      </div>
+      <div class="scheduled-table">
+        <h2>Scheduled Interviews</h2>
+        <table id="scheduledTable">
+          <tr>
+            <th>Candidate Name</th>
+            <th>Position</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Actions</th>
+          </tr>
+          <!-- Example row -->
+          <tr>
+            <td>John Smith</td>
+            <td>Python Developer</td>
+            <td>06/15/2024</td>
+            <td>10:00 AM</td>
+            <td>
+              <button
+                class="button"
+                onclick="viewDetails('John Smith', 'Python Developer', '06/15/2024', '10:00 AM','https;/google.com')"
+              >
+                View Details
+              </button>
+              <button class="button" onclick="startInterview()">
+                Start Interview
+              </button>
+              <button class="button" onclick="cancelInterview(this)">
+                Cancel Interview
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script>
+      function scheduleInterview(name, position) {
+        document.getElementById("candidateName").value = name;
+        document.getElementById("position").value = position;
+        document.getElementById("scheduleCard").style.display = "block";
+      }
+
+      function cancelSchedule() {
+        document.getElementById("scheduleCard").style.display = "none";
+      }
+
+      function addScheduledInterview(event) {
+        event.preventDefault();
+        const candidateName = document.getElementById("candidateName").value;
+        const position = document.getElementById("position").value;
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
+        const link = document.getElementById("meeting").value;
+
+        const scheduledTable = document.getElementById("scheduledTable");
+        const row = scheduledTable.insertRow();
+        row.insertCell(0).textContent = candidateName;
+        row.insertCell(1).textContent = position;
+        row.insertCell(2).textContent = date;
+        row.insertCell(3).textContent = time;
+        row.insertCell(4).textContent = link;
+        const actionsCell = row.insertCell(5);
+        actionsCell.innerHTML = `
+                <button class="button" onclick="viewDetails('${candidateName}', '${position}', '${date}', '${time}')">View Details</button>
+                <button class="button" onclick="startInterview()">Start Interview</button>
+                <button class="button" onclick="cancelInterview()">cancel Interview</button>
+            `;
+
+        document.getElementById("scheduleCard").style.display = "none";
+      }
+
+      function viewDetails(name, position, date, time,link) {
+        alert(
+          `Details:\nName: ${name}\nPosition: ${position}\nDate: ${date}\nTime: ${time} \n Meeting Link:${link}`
+        );
+      }
+
+      function startInterview() {
+        window.location.href = "https://meet.google.com";
+      }
+      function cancelInterview(row) {
+        // Confirm with the user if they really want to cancel the interview
+        if (confirm("Are you sure you want to cancel this interview?")) {
+          // Get the row index
+          var rowIndex = row.parentNode.parentNode.rowIndex;
+
+          // Remove the row from the table
+          document.getElementById("scheduledTable").deleteRow(rowIndex);
+        }
+      }
+    </script>
+
+  </body>
+</html>

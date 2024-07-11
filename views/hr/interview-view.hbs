@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Detailed Interview Detail - VirtueRecruit</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/rstyle.css" />
+    <script src="/recruiter.js" defer></script>
+    <style>
+      body {
+        background-color: #f5f5f5;
+        font-family: "Poppins", sans-serif;
+        margin-top: 80px;
+      }
+
+      .interview-container {
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .interview-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .interview-header h2 {
+        margin-bottom: 10px;
+      }
+
+      .interview-section {
+        margin-bottom: 20px;
+      }
+
+      .interview-section h3 {
+        margin-bottom: 10px;
+      }
+
+      .interview-section p {
+        margin-bottom: 10px;
+      }
+
+      .btn-primary {
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #6d7a9b;
+        border: none;
+      }
+
+      .btn-primary:hover {
+        background-color: #447fc8;
+      }
+
+      .score-card {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      .score-card h4 {
+        margin-bottom: 5px;
+      }
+
+      .score-card p {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-fixed-top">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/hr/dashboard">Dashboard</a></li>
+                <li><a href="/hr/interview">Interview</a></li>
+                <li><a href="/hr/profile">My Profile</a></li>
+                <li><a href="/hr/job">Jobs</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/hr/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="interview-container">
+            <div class="interview-header">
+              <h2>Interview Details</h2>
+            </div>
+
+            <div class="interview-section">
+              <h3>Candidate Details</h3>
+              <p><strong>Name: </strong>Karan Sharma</p>
+              <p><strong>Email: </strong>Karan@yahoo.com</p>
+              <p><strong>Phone:</strong> 6355945632</p>
+            </div>
+
+            <div class="interview-section">
+              <h3>Aptitude Test Scores</h3>
+              <div class="score-card">
+                <h4>Verbal</h4>
+                <p>Score: 90%</p>
+              </div>
+              <div class="score-card">
+                <h4>Logical Reasoning</h4>
+                <p>Score: 85%</p>
+              </div>
+              <div class="score-card">
+                <h4>Pattern Recognition</h4>
+                <p>Score: 80%</p>
+              </div>
+              <div class="score-card">
+                <h4>Data Structures & Algorithms</h4>
+                <p>Score: 95%</p>
+              </div>
+            </div>
+            <div class="interview-section">
+              <h3>Interview Details</h3>
+              <p>
+                <strong>Date & Time:</strong> Monday, July 1st, 2024 - 10:00 AM
+                to 11:00 AM
+              </p>
+              <p><strong>Interviewer:</strong>Shivani Kateliya</p>
+              <p><strong>Location:</strong> Google  Meeting</p>
+            </div>
+
+            <div class="interview-section">
+              <h3>Notes</h3>
+              <p>Prepare technical questions about React and Node.js.</p>
+            </div>
+
+            <div class="interview-section">
+              <h3>Actions</h3>
+             <button class="btn btn-primary"> <a href="https://meet.google.com/" style="color: white;">Start Interview</a></button>
+              <button class="btn btn-danger">Cancel Interview</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

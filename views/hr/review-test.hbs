@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Test Review</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/rstyle.css" />
+  <style>
+    /* Additional CSS for styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .question {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .options {
+      margin-top: 10px;
+    }
+    .option {
+      margin-bottom: 10px;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .navigation {
+      text-align: center;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: #fff;
+      margin: 0 10px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .redirect-button {
+      background-color: #2196f3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Test Review</h1>
+    <div id="questions">
+      <!-- Questions will be dynamically added here -->
+    </div>
+    <div class="navigation">
+      <button id="prev" onclick="prevQuestion()" style="display: none">Previous</button>
+      <button id="next" onclick="nextQuestion()">Next</button>
+      <button id="submit" onclick="submitQuiz()" style="display: none">Generate Result</button>
+    </div>
+  </div>
+
+  <script>
+    var questions = [
+      {
+        question: "What does HTML stand for?",
+        options: [
+          "Hyper Text Markup Language",
+          "Hyperlinks and Text Markup Language",
+          "Home Tool Markup Language",
+          "Hyper Text Makeup Language",
+        ],
+        answer: 0,
+      },
+      {
+        question: "What does CSS stand for?",
+        options: [
+          "Cascading Style Sheets",
+          "Creative Style Sheets",
+          "Computer Style Sheets",
+          "Colorful Style Sheets",
+        ],
+        answer: 0,
+      },
+      {
+        question: "What does JS stand for?",
+        options: ["JavaScript", "Java Syntax", "Jelly Sandals", "Jumbo Soup"],
+        answer: 0,
+      },
+      // Add more questions as needed
+    ];
+
+    var currentQuestion = 0;
+    var answers = [0,0,0];
+    var resultGenerated = false; // Track if result is already generated
+
+    function displayQuestion() {
+      var questionDiv = document.createElement("div");
+      questionDiv.classList.add("question");
+      questionDiv.innerHTML = `
+          <h3>${questions[currentQuestion].question}</h3>
+          <div class="options">
+            ${questions[currentQuestion].options
+              .map(
+                (option, index) => `
+              <div class="option">
+                <input type="radio" id="option${index}" name="question${currentQuestion}" value="${index}" ${
+                  answers[currentQuestion] === index ? "checked" : ""
+                } disabled />
+                <label for="option${index}">${option}</label>
+              </div>
+            `
+              )
+              .join("")}
+          </div>
+          <p>Your Answer: <span>${
+            questions[currentQuestion].options[answers[currentQuestion]]
+          }</span></p>
+          <p>Correct Answer: ${
+            questions[currentQuestion].options[questions[currentQuestion].answer]
+          }</p>
+        `;
+      document.getElementById("questions").appendChild(questionDiv);
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion >= questions.length) {
+        currentQuestion = questions.length - 1;
+        document.getElementById("next").style.display = "none";
+        document.getElementById("submit").style.display = "inline-block";
+      }
+      document.getElementById("questions").innerHTML = "";
+      displayQuestion();
+      document.getElementById("prev").style.display = "inline-block";
+    }
+
+    function prevQuestion() {
+      currentQuestion--;
+      if (currentQuestion < 0) {
+        currentQuestion = 0;
+        document.getElementById("prev").style.display = "none";
+      }
+      document.getElementById("questions").innerHTML = "";
+      displayQuestion();
+      document.getElementById("next").style.display = "inline-block";
+      document.getElementById("submit").style.display = "none";
+    }
+
+    function submitQuiz() {
+      if (resultGenerated) {
+        alert("Result already generated!");
+      } else {
+        var totalQuestions = questions.length;
+        var correctAnswers = 0;
+        for (var i = 0; i < totalQuestions; i++) {
+          if (answers[i] === questions[i].answer) {
+            correctAnswers++;
+          }
+        }
+        var wrongAnswers = totalQuestions - correctAnswers;
+        var passPercentage = 70; // Change this as needed
+        var result = document.createElement("div");
+        result.classList.add("result");
+        result.innerHTML = `
+            <p>Total Questions: ${totalQuestions}</p>
+            <p>Correct Answers: ${correctAnswers}</p>
+            <p>Wrong Answers: ${wrongAnswers}</p>
+            <p>Pass Percentage: ${(
+              (correctAnswers / totalQuestions) *
+              100
+            ).toFixed(2)}%</p>
+            <p>Result: ${
+              (correctAnswers / totalQuestions) * 100 >= passPercentage
+                ? "Passed"
+                : "Failed"
+            }</p>
+          `;
+        document.getElementById("questions").appendChild(result);
+        resultGenerated = true;
+
+        // Replace Previous button with Redirect button
+        document.getElementById("prev").style.display = "none";
+        var redirectButton = document.createElement("button");
+        redirectButton.textContent = "Go to Interview ->";
+        redirectButton.classList.add("redirect-button");
+        redirectButton.onclick = function() {
+          window.location.href = "/hr/interview"; // Redirect to interview.html
+        };
+        document.querySelector(".navigation").appendChild(redirectButton);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account - VirtueRecruit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ced7f0f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: 500;
+            color: black;
+        }
+
+        .container {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            margin: 30px;
+        }
+
+        .image {
+            flex: 1;
+            max-width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(247, 247, 248);
+        }
+
+        .image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .form-container {
+            flex: 1;
+            max-width: 50%;
+            padding: 20px;
+            margin: 10px 0;
+            /* Added margin */
+        }
+
+        h2 {
+            width: 100%;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            flex: 1 1 calc(50% - 40px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 20px;
+        }
+
+        .form-group label {
+            color: #333;
+            font-weight: bold;
+            margin-right: 20px;
+            min-width: 150px;
+            text-align: left;
+        }
+
+        .form-group input {
+            flex: 1;
+            padding: 8px;
+            border: 2px solid #616565;
+            border-radius: 7px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn {
+            background-color: #1284ff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 70%;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin-top: 2px;
+        }
+
+        .btn:hover {
+            background-color: #0076fd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="image">
+            <img src="/images/virturecruit copy.png" alt="Image" />
+        </div>
+        <div class="form-container">
+            <h2>Create Account as Recruiter</h2>
+            <form id="createAccountForm" method="post" action="/hr/register" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" />
+                </div>
+                <div class="form-group">
+                    <label for="title">Company logo</label>
+                    <input type="file" id="image" name="image" accept="image/jpeg, image/png" />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone No:</label>
+                    <input type="tel" id="phone" name="phone" />
+                </div>
+                <div class="form-group">
+                    <label for="company">Company Name:</label>
+                    <input type="text" id="company" name="company" />
+                </div>
+                <div class="form-group">
+                    <label for="location">Company Location:</label>
+                    <input type="text" id="location" name="location" />
+                </div>
+                <div class="form-group">
+                    <label for="position">Position:</label>
+                    <input type="text" id="position" name="position" />
+                </div>
+                <div class="form-group">
+                    <label for="experience">Experience:</label>
+                    <input type="text" id="experience" name="experience" />
+                </div>
+                <div class="form-group">
+                    <label for="website">Website URL:</label>
+                    <input type="url" id="website" name="website" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" />
+                </div>
+                <div>
+                    <button type="submit" class="btn">
+                        Create Account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function () {
+            $("#createAccountForm").on("submit", function (event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: $(this).attr("method"),
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        console.log(response)
+                        if (response.type == 'error') {
+                            toastr.error(response.message)
+                        }
+                        if (response.type == 'success') {
+                            location.href = response.message
+                        }
+                    },
+                    error: function (error) {
+                        toastr.error("Something went wrong")
+                    },
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

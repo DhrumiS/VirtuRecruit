@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/rstyle.css" />
+    <script src="/recruiter.js" defer></script>
+    <title>Total Applications Received-VirtueRecruit</title>
+    <style>
+      .container {
+        max-width: 1200px;
+        /* margin: 20px; */
+        margin-top: 70px;
+        padding: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        background-color: #6d7a9b;
+
+        padding: 15px;
+        text-align: center;
+      }
+      .header h2 {
+        color: white;
+      }
+      .table-container {
+        margin-top: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      th,
+      td {
+        padding: 12px;
+        border: 2px solid #b6b6b6;
+        text-align: left;
+      }
+      th {
+        background-color: #9a9a9a;
+        color: white;
+      }
+      .btn {
+        padding: 5px 10px;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .btn.view {
+        background-color: #007bff;
+      }
+      .btn.delete {
+        background-color: #dc3545;
+      }
+      .btn.details {
+        background-color: #28a745;
+      }
+      .btn.schedule {
+        background-color: #17a2b8;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-fixed-top">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/hr/dashboard">Dashboard</a></li>
+                <li><a href="/hr/interview">Interview</a></li>
+                <li><a href="/hr/profile">My Profile</a></li>
+                <li><a href="/hr/job">Jobs</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/hr/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="header">
+        <h2>Total Applications Received</h2>
+      </div>
+
+      <!-- Total Applications Table -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Candidate Name</th>
+              <th>Position</th>
+              <th>Application Date</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="applicationsTable">
+            <!-- Application rows will be added here by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Job Posts Table -->
+      <div class="header">
+        <h2>Job Posts and Total Applications</h2>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Job Title</th>
+              <th>Total Applications</th>
+            </tr>
+          </thead>
+          <tbody id="jobPostsTable">
+            <!-- Job post rows will be added here by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      const applications = [
+        {
+          name: "John Doe",
+          position: "Python Developer",
+          date: "01/05/2024",
+          email: "john@example.com",
+          phone: "123-456-7890",
+        },
+        {
+          name: "Jane Smith",
+          position: "Frontend Developer",
+          date: "01/04/2024",
+          email: "jane@example.com",
+          phone: "234-567-8901",
+        },
+        {
+          name: "Samuel Green",
+          position: "Backend Developer",
+          date: "01/03/2024",
+          email: "samuel@example.com",
+          phone: "345-678-9012",
+        },
+      ];
+
+      const jobPosts = [
+        { title: "Python Developer", totalApplications: 50 },
+        { title: "Frontend Developer", totalApplications: 40 },
+        { title: "Backend Developer", totalApplications: 60 },
+      ];
+
+      function loadApplications() {
+        const tableBody = document.getElementById("applicationsTable");
+        applications.forEach((app) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td>${app.name}</td>
+                    <td>${app.position}</td>
+                    <td>${app.date}</td>
+                    <td>${app.email}</td>
+                    <td>${app.phone}</td>
+                    <td>
+                        <button class="btn view" onclick="viewApplication('${app.name}')">View</button>
+                        <button class="btn details" onclick="viewDetails('${app.name}', '${app.email}', '${app.phone}')">Details</button>
+                    </td>
+                `;
+          tableBody.appendChild(row);
+        });
+      }
+
+      function loadJobPosts() {
+        const tableBody = document.getElementById("jobPostsTable");
+        jobPosts.forEach((job) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td>${job.title}</td>
+                    <td>${job.totalApplications}</td>
+                `;
+          tableBody.appendChild(row);
+        });
+      }
+
+      function loadEligibilityCriteria() {
+        const tableBody = document.getElementById("eligibilityTable");
+        eligibilityCriteria.forEach((eligibility) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td>${eligibility.name}</td>
+                    <td>${eligibility.criteria}</td>
+                `;
+          tableBody.appendChild(row);
+        });
+      }
+
+      function loadInterviewSchedules() {
+        const tableBody = document.getElementById("scheduleTable");
+        interviewSchedules.forEach((schedule) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td>${schedule.name}</td>
+                    <td>${schedule.position}</td>
+                    <td>${schedule.date}</td>
+                    <td>${schedule.time}</td>
+                    <td>
+                        <button class="btn schedule" onclick="scheduleInterview('${schedule.name}')">Schedule</button>
+                    </td>
+                `;
+          tableBody.appendChild(row);
+        });
+      }
+
+      function viewApplication(name) {
+        alert("Viewing application of " + name);
+      }
+
+      function deleteApplication(name) {
+        alert("Deleting application of " + name);
+        // Additional logic to delete the application from the array and update the table
+      }
+
+      function viewDetails(name, email, phone) {
+        alert(
+          "Details:\nName: " + name + "\nEmail: " + email + "\nPhone: " + phone
+        );
+      }
+
+      function scheduleInterview(name) {
+        alert("Scheduling interview for " + name);
+        // Additional logic to schedule the interview
+      }
+
+      // Load all tables when the page loads
+      window.onload = () => {
+        loadApplications();
+        loadJobPosts();
+        loadEligibilityCriteria();
+        loadInterviewSchedules();
+      };
+    </script>
+  </body>
+</html>

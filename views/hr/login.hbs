@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - VirtueRecruit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ced7f0f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .box1 {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box2 {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h3 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .form-group input {
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .btn2 {
+            background-color: #ddd;
+            color: #333;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .straght-line {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .straght-line .line3,
+        .straght-line .line4 {
+            flex: 1;
+            height: 1px;
+            background-color: #ccc;
+        }
+
+        .straght-line .text {
+            margin: 0 10px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        #text1,
+        #text2,
+        #text3,
+        #text4 {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: 500;
+            color: black;
+        }
+
+        #text4 a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        #text4 a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="post" action="/hr/login" id="loginForm">
+        <div class="container">
+            <div class="box1">
+                <img src="/images/virturecruit copy.png" alt="" width="300px" />
+            </div>
+            <div class="box2">
+                <h3>LOGIN as Recruiter</h3>
+                <div class="form-group">
+                    <input type="text" name="email" placeholder="Email" id="email" />
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" placeholder="Password" id="password" />
+                </div>
+
+                <button type="submit" class="btn">
+                    Login
+                </button>
+                <div class="straght-line">
+                    <div class="line3"></div>
+                    <h6 class="text">Don't have an account?</h6>
+                </div>
+
+                <button class="btn2">
+                    <a href="/hr/register">Create an account</a>
+                </button>
+
+                <div id="text1">By registering, You agree to the</div>
+                <div id="text2">Terms, Conditions and Policies of Borcelle</div>
+                <div id="text3">& Privacy Policy</div>
+            </div>
+        </div>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        
+        $(document).ready(function () {
+            $("#loginForm").on("submit", function
+                (event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+                $.ajax({
+                    url: '/hr/login',
+                    method: 'post',
+                    data: JSON.stringify({
+                        email: $('#email').val(),
+                        password: $('#password').val(),
+                    }),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log(response)
+                        if (response.type == 'error') {
+                            toastr.error(response.message)
+                        }
+                        if (response.type == 'success') {
+                            location.href = response.message
+                        }
+                    },
+                    error: function (error) {
+                        toastr.error("Something went wrong")
+                    },
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

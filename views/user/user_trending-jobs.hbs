@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>User</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse visible-xs">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav" style=" background-color:#CBDADD;">
+                <h2>User</h2>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="/user/dashboard">Dashboard</a></li>
+                    <li><a href="/user/interview">Interviews</a></li>
+                    <li><a href="/user/job">Jobs</a></li>
+                    <li><a href="/user/profile">My Profile</a></li>
+                    <li><a href="/user/logout" class="btn btn-info btn-lg">
+                            <span class="glyphicon glyphicon-log-out"></span> Log out
+                        </a></li>
+                </ul>
+                <br />
+            </div>
+            <br />
+
+            <div class="col-sm-9">
+                <div class="wel" style="box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);">
+                    <h3>LuminaTech</h3>
+                    <p>At LuminaTech, our vision is to illuminate the world through innovative technology solutions that
+                        empower individuals and organizations to thrive. With a mission to pioneer cutting-edge
+                        advancements, we strive to create transformative experiences that exceed expectations. Our goals
+                        center around fostering sustainable growth, fostering a culture of inclusivity, and driving
+                        positive societal impact. Through relentless dedication and collaborative spirit, we aim to be a
+                        beacon of progress in an ever-evolving landscape. Join us on our journey to illuminate
+                        possibilities and shape a brighter future together.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="jobs">
+                            <p> <b><i>Software Engineer</i></b> <br>
+                                Skills Required :
+                            <ul>
+                                <li>C</li>
+                                <li>Python</li>
+                                <li>DBMS</li>
+                                <li>PHP</li>
+                            </ul>
+                            <a href="/user/applybyquiz" class="btn btn-primary quiz-link" data-job="software_engineer"
+                                data-company="Web Solutions">Apply by Taking Quiz</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="jobs">
+                            <p> <b><i>Frontend Developer</i></b> <br>
+                                Skills Required :
+                            <ul>
+                                <li>HTML, CSS</li>
+                                <li>JavaScript</li>
+                                <li>Any JS framework</li>
+                                <li>Bootstrap</li>
+                            </ul>
+                            <a href="/user/applybyquiz" class="btn btn-primary quiz-link" data-job="frontend_developer"
+                                data-company="Data Analytics Inc.">Apply by Taking Quiz</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="jobs">
+                            <p> <b><i>Fullstack Developer</i></b> <br>
+                                Skills Required :
+                            <ul>
+                                <li>HTML, CSS</li>
+                                <li>JS</li>
+                                <li>DBMS</li>
+                                <li>Any framework</li>
+                            </ul>
+                            <a href="/user/applybyquiz" class="btn btn-primary quiz-link" data-job="fullstack_developer"
+                                data-company="Data Analytics Inc.">Apply by Taking Quiz</a>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <h4 style="padding-left: 20px; font-size: x-large;">Contact Recruiter: <a
+                            href="mailto:abc@gmail.com">abc@gmail.com</a></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    
+        document.querySelectorAll('.quiz-link').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const jobTitle = this.getAttribute('data-job');
+                localStorage.setItem('jobTitle', jobTitle);
+                window.location.href = `/user/applybyquiz?job=${jobTitle}`; // Pass job title as query parameter
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Recruiter Profile - VirtueRecruit</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="/rstyle.css" />
+    <style>
+        .profile-icon-container {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: #f2f2f2;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .profile-icon {
+            font-size: 48px;
+            color: #333;
+        }
+
+        .profile-icon h2 {
+            font-size: 12px;
+        }
+
+        img {
+            height: 151px;
+            width: 151px;
+            border-radius: 25px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/recruiter.js" defer></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+            <li ><a href="/hr/dashboard">Dashboard</a></li>
+                <li><a href="/hr/interview">Interview</a></li>
+                <li class="active"><a href="/hr/postjob">My Profile</a></li>
+                <li><a href="/hr/job">Jobs</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/hr/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 80px">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h2>Recruiter Profile</h2>
+            </div>
+        </div>
+        <div class="col-sm-4 text-center">
+            <!-- Profile Icon -->
+            <div class="profile-icon-container">
+                <i class="fa-solid fa-user profile-icon"></i>
+                <h5>Company Logo</h5>
+            </div>
+        </div>
+        <div class="col-sm-4 text-center"></div>
+        <div class="col-sm-2"></div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="profile-details">
+                    <h3>Shivani Katateliya</h3>
+                    <p><strong>Position:</strong> Hiring Manager</p>
+                    <p><strong>Company:</strong> InfoChip</p>
+                    <p><strong>Experience:</strong> Since 2016</p>
+                    <a href="/hr/editprofile">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">
+                            Edit Profile
+                        </button></a>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="company-details">
+                    <h3>Company Details</h3>
+                    <p><strong>Company Name:</strong> InfoChip</p>
+                    <p><strong>Industry:</strong> Technology</p>
+                    <p><strong>Location:</strong> [Location]</p>
+                    <p><strong>Website:</strong> <a href="#">www.infochip.com</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <hr />
+                <h3>Add New Job Post</h3>
+                <form id="jobform" method="post">
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title:</label>
+                        <input type="text" class="form-control" id="jobTitle" placeholder="Enter job title" />
+                    </div>
+                    <div class="form-group">
+                        <label for="jobDescription">Job Description:</label>
+                        <textarea class="form-control" id="jobDescription" rows="4"
+                            placeholder="Enter job description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobRequirements">Job Requirements</label>
+                        <textarea class="form-control" id="jobRequirements" rows="3"
+                            placeholder="Enter job requirements" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobLocation">Job Location</label>
+                        <input type="text" class="form-control" id="jobLocation" placeholder="Enter job location"
+                            required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="salary">Salary</label>
+                        <input type="text" class="form-control" id="salary" placeholder="Enter salary" />
+                    </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="deadline">Application Deadline</label>
+                    <input type="date" class="form-control" id="deadline" required />
+                </div>
+
+                <input type="submit" value="Post Job">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function () {
+            $("#jobform").on("submit", function
+                (event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+                $.ajax({
+                    url: '/hr/postjob',
+                    method: 'post',
+                    data: JSON.stringify({
+                        jobTitle: $('#jobTitle').val(),
+                        jobDescription: $('#jobDescription').val(),
+                        jobRequirements: $('#jobRequirements').val(),
+                        jobLocation: $('#jobLocation').val(),
+                        salary: $('#salary').val(),
+                        deadline: $('#deadline').val()
+                    }),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log(response)
+                        if (response.type == 'error') {
+                            toastr.error(response.message)
+                        }
+                        if (response.type == 'success') {
+                            toastr.success(response.message)
+                        }
+                    },
+                    error: function (error) {
+                        toastr.error("Something went wrong")
+                    },
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

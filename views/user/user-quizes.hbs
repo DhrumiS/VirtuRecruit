@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interview Quiz</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      /* Quiz Styles */
+      body {
+        background-color: white;
+      }
+
+      #quiz {
+        margin-bottom: 20px;
+      }
+
+      .option {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .navigation {
+        margin-top: 20px;
+      }
+
+      .navigation button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      .navigation button:hover {
+        background-color: #45a049;
+      }
+
+      #result {
+        margin-top: 20px;
+        font-weight: bold;
+      }
+
+      /* Timer Styles */
+      #timer {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      html,
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Roboto", sans-serif;
+      }
+
+      .p {
+        padding-left: 20px;
+      }
+    </style>
+  </head>
+
+  <body class="w3-light-grey">
+    <!-- Page Container -->
+    <div class="w3-content w3-margin-top" style="max-width: 1400px">
+      <!-- The Grid -->
+      <div class="w3-row-padding">
+        <!-- Left Column -->
+        <div class="w3-third">
+          <div class="w3-white w3-text-grey w3-card-4">
+            <div
+              class="w3-display-container"
+              style="height: 85vh; background-color: #cbdadd; color: black"
+            >
+              <p>
+                <i
+                  class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"
+                ></i
+                >Company Name:WebWorks
+              </p>
+              <p>
+                <i
+                  class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"
+                ></i
+                >Job Role:Data Analyst
+              </p>
+              <p>
+                <i
+                  class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"
+                ></i
+                >Quiz Description:Its a basic mandatory test quiz to apply for Data Analyst job post at WebWorks. kindly complete the quiz in given time. Assessment results will be shown in interviews section if you pass the test
+              </p>
+
+              <hr />
+
+              <p class="w3-large">
+                <b
+                  ><i
+                    class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"
+                  ></i
+                  >Skills Required:</b
+                >
+              </p>
+              <div class="p">
+                <p>Basic Logic Building</p>
+                <p>Python</p>
+                <p>ORM</p>
+                <br />
+                <br />
+              </div>
+            </div>
+          </div>
+          <br />
+          <!-- End Left Column -->
+        </div>
+
+        <!-- Right Column -->
+        <div class="w3-twothird">
+          <div class="w3-container w3-card-4 w3-white w3-margin-bottom">
+            <h2 class="w3-text-grey w3-padding-16">
+              <i
+                class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"
+              ></i
+              >Quiz
+            </h2>
+            <div class="w3-container">
+              <div id="quiz">
+                <div
+                  id="category"
+                  style="font-weight: bold; margin-bottom: 10px"
+                ></div>
+                <div id="question"></div>
+                <label class="option"
+                  ><input type="radio" name="option" value="0" />
+                  <span id="option0"></span
+                ></label>
+                <label class="option"
+                  ><input type="radio" name="option" value="1" />
+                  <span id="option1"></span
+                ></label>
+                <label class="option"
+                  ><input type="radio" name="option" value="2" />
+                  <span id="option2"></span
+                ></label>
+                <label class="option"
+                  ><input type="radio" name="option" value="3" />
+                  <span id="option3"></span
+                ></label>
+                <div class="navigation">
+                  <button onclick="prevQuestion()">Previous</button>
+                  <button onclick="nextQuestion()">Next</button>
+                  <button
+                    id="submitButton"
+                    style="display: none"
+                    onclick="nextQuestion()"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="w3-container w3-card-4 w3-white">
+            <p id="timer"></p>
+          </div>
+
+          <!-- End Right Column -->
+        </div>
+
+        <!-- End Grid -->
+      </div>
+
+      <!-- End Page Container -->
+    </div>
+
+    <script>
+      const quizzes = {
+        software_engineer: {
+          aptitude: [
+            {
+              question: "What is 2 + 2?",
+              options: ["3", "4", "5", "6"],
+              answer: "4",
+            },
+            {
+              question:
+                "If a train travels at 80 km/h, how far will it go in 2.5 hours?",
+              options: ["150 km", "180 km", "200 km", "220 km"],
+              answer: "200 km",
+            },
+            {
+              question: "What is the square root of 144?",
+              options: ["10", "12", "14", "16"],
+              answer: "12",
+            },
+          ],
+          logical_reasoning: [
+            {
+              question:
+                "If all cats have tails, and Fluffy is a cat, what can you conclude?",
+              options: [
+                "Fluffy has a tail",
+                "Fluffy is a dog",
+                "Fluffy is tailless",
+                "None of the above",
+              ],
+              answer: "Fluffy has a tail",
+            },
+            {
+              question:
+                "Which word doesn't belong: Apple, Banana, Carrot, Potato?",
+              options: ["Apple", "Banana", "Carrot", "Potato"],
+              answer: "Potato",
+            },
+            {
+              question: "Complete the series: 2, 4, 8, 16, ?",
+              options: ["20", "24", "32", "64"],
+              answer: "32",
+            },
+          ],
+          english: [
+            {
+              question: "Choose the correct spelling: Recieve or Receive?",
+              options: ["Recieve", "Receive"],
+              answer: "Receive",
+            },
+            {
+              question:
+                "Which sentence is grammatically correct? 'He eat an apple' or 'He eats an apple'?",
+              options: ["He eat an apple", "He eats an apple"],
+              answer: "He eats an apple",
+            },
+            {
+              question: "What is the synonym of 'Happy'?",
+              options: ["Sad", "Angry", "Joyful", "Tired"],
+              answer: "Joyful",
+            },
+          ],
+          submit: [
+            {
+              question: "Submit the quiz?",
+              options: ["Submit"],
+              answer: "Submit",
+            },
+          ],
+        },
+        data_engineer: {
+          aptitude: [
+            {
+              question:
+                "If a car travels at 60 mph, how long will it take to travel 120 miles?",
+              options: ["1 hour", "2 hours", "3 hours", "4 hours"],
+              answer: "2 hours",
+            },
+            {
+              question: "What is 30% of 200?",
+              options: ["30", "50", "60", "70"],
+              answer: "60",
+            },
+            {
+              question: "What is the sum of the first 10 positive integers?",
+              options: ["45", "55", "65", "75"],
+              answer: "55",
+            },
+          ],
+          logical_reasoning: [
+            {
+              question: "What comes next in the series: 2, 4, 6, 8, ?",
+              options: ["10", "12", "14", "16"],
+              answer: "10",
+            },
+            {
+              question: "Which number doesn't belong: 3, 6, 9, 12, 15?",
+              options: ["6", "9", "12", "15"],
+              answer: "15",
+            },
+            {
+              question: "Complete the series: 1, 4, 9, 16, ?",
+              options: ["20", "24", "25", "32"],
+              answer: "25",
+            },
+          ],
+          english: [
+            {
+              question:
+                "Choose the correct sentence: The data engineer works with datasets or dataset?",
+              options: [
+                "The data engineer works with datasets",
+                "The data engineer works with dataset",
+              ],
+              answer: "The data engineer works with datasets",
+            },
+            {
+              question: "What does the acronym 'SQL' stand for?",
+              options: [
+                "Structured Query Language",
+                "Sequential Query Language",
+                "Structured Question Language",
+                "Sequential Question Language",
+              ],
+              answer: "Structured Query Language",
+            },
+            {
+              question: "Which word is a synonym of 'analyze'?",
+              options: ["Disregard", "Study", "Ignore", "Neglect"],
+              answer: "Study",
+            },
+          ],
+          submit: [
+            {
+              question: "Submit the quiz?",
+              options: ["Submit"],
+              answer: "Submit",
+            },
+          ],
+        },
+        data_analyst: {
+          aptitude: [
+            {
+              question:
+                "If a plane travels at 500 mph, how far will it go in 3 hours?",
+              options: ["1000 miles", "1500 miles", "2000 miles", "2500 miles"],
+              answer: "1500 miles",
+            },
+            {
+              question: "What is 40% of 250?",
+              options: ["60", "80", "100", "120"],
+              answer: "100",
+            },
+            {
+              question: "What is the sum of the first 15 positive integers?",
+              options: ["105", "120", "135", "150"],
+              answer: "120",
+            },
+          ],
+          logical_reasoning: [
+            {
+              question: "What comes next in the series: 3, 6, 12, 24, ?",
+              options: ["30", "36", "48", "54"],
+              answer: "48",
+            },
+            {
+              question: "Which number doesn't belong: 2, 4, 6, 8, 10?",
+              options: ["4", "6", "8", "10"],
+              answer: "10",
+            },
+            {
+              question: "Complete the series: 5, 10, 15, 20, ?",
+              options: ["25", "30", "35", "40"],
+              answer: "25",
+            },
+          ],
+          english: [
+            {
+              question:
+                "Choose the correct sentence: The data analyst analyzes data or datas?",
+              options: [
+                "The data analyst analyzes data",
+                "The data analyst analyzes datas",
+              ],
+              answer: "The data analyst analyzes data",
+            },
+            {
+              question: "What does the acronym 'API' stand for?",
+              options: [
+                "Automated Programming Interface",
+                "Application Programming Interface",
+                "Automated Processing Interface",
+                "Application Processing Interface",
+              ],
+              answer: "Application Programming Interface",
+            },
+            {
+              question: "Which word is a synonym of 'interpret'?",
+              options: ["Translate", "Explain", "Observe", "Measure"],
+              answer: "Explain",
+            },
+          ],
+          submit: [
+            {
+              question: "Submit the quiz?",
+              options: ["Submit"],
+              answer: "Submit",
+            },
+          ],
+        },
+      };
+      const urlParams = new URLSearchParams(window.location.search);
+      const jobRole = urlParams.get("jobRole") || "software_engineer"; // Default to 'software_engineer'
+      const quiz = quizzes[jobRole];
+      let currentCategoryIndex = 0;
+      const categories = Object.keys(quiz);
+      let currentQuestionIndex = 0;
+      let score = 0;
+
+      function loadQuestion() {
+        const category = categories[currentCategoryIndex];
+        const question = quiz[category][currentQuestionIndex];
+        document.getElementById(
+          "category"
+        ).textContent = `Category: ${category.replace("_", " ")}`;
+        document.getElementById("question").textContent = question.question;
+        document.getElementById("option0").textContent = question.options[0];
+        document.getElementById("option1").textContent = question.options[1];
+        document.getElementById("option2").textContent = question.options[2];
+        document.getElementById("option3").textContent = question.options[3];
+        const options = document.getElementsByName("option");
+        options.forEach((option) => {
+          option.checked = false;
+        });
+
+        // Show/Hide Next and Submit buttons
+        if (category === "submit") {
+          document.getElementById("nextButton").style.display = "none";
+          document.getElementById("submitButton").style.display = "block";
+        } else {
+          document.getElementById("nextButton").style.display = "block";
+          document.getElementById("submitButton").style.display = "none";
+        }
+      }
+
+      function nextQuestion() {
+        const options = document.getElementsByName("option");
+        const selectedOption = Array.from(options).find(
+          (option) => option.checked
+        );
+        if (selectedOption) {
+          const category = categories[currentCategoryIndex];
+          const question = quiz[category][currentQuestionIndex];
+          if (question.options[selectedOption.value] === question.answer) {
+            score++;
+          }
+        }
+
+        currentQuestionIndex++;
+        if (
+          currentQuestionIndex >= quiz[categories[currentCategoryIndex]].length
+        ) {
+          currentQuestionIndex = 0;
+          currentCategoryIndex++;
+          if (currentCategoryIndex >= categories.length) {
+            window.location.href = "/user/quizsubmitted"; // Redirect to the submission page
+            return;
+          }
+        }
+
+        loadQuestion();
+      }
+
+      function prevQuestion() {
+        if (currentQuestionIndex > 0) {
+          currentQuestionIndex--;
+        } else if (currentCategoryIndex > 0) {
+          currentCategoryIndex--;
+          currentQuestionIndex =
+            quiz[categories[currentCategoryIndex]].length - 1;
+        }
+
+        loadQuestion();
+      }
+
+      window.onload = function () {
+        loadQuestion();
+      };
+
+      // Timer
+      let totalTime = 60 * 5; // 5 minutes in seconds
+      const timerElement = document.getElementById("timer");
+
+      function updateTimer() {
+        const minutes = Math.floor(totalTime / 60);
+        const seconds = totalTime % 60;
+        timerElement.textContent = `Time left: ${minutes}:${
+          seconds < 10 ? "0" : ""
+        }${seconds}`;
+        if (totalTime > 0) {
+          totalTime--;
+        } else {
+          window.location.href = "/user/quizsubmitted"; // Redirect to the submission page
+        }
+      }
+
+      setInterval(updateTimer, 1000);
+    </script>
+  </body>
+</html>

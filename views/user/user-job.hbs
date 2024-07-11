@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>User</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse visible-xs">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="#">User</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="user.html">Dashboard</a></li>
+                    <li><a href="user_interview.html">Interviews</a></li>
+                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">My profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav hidden-xs" style=" background-color:#CBDADD; height:160vh;">
+                <h2>User</h2>
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="/user/dashboard">Dashboard</a></li>
+                    <li><a href="/user/interview">Interviews</a></li>
+                    <li class="active"><a href="/user/job">Job</a></li>
+                    <li><a href="/user/profile">My Profile</a></li>
+                    <li><a href="/user/logout" class="btn btn-info btn-lg">
+                            <span class="glyphicon glyphicon-log-out"></span> Log out
+                        </a></li>
+                </ul>
+                <br />
+            </div>
+            <br />
+
+            <div class="col-sm-9">
+                <div class="wel" style="box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);">
+                    <h3>Hello Welcome {{user}}</h3>
+                    <p id="time">Online at 8:30 pm .</p>
+                </div>
+
+                <class="left-side">
+                    <button class="job-search-button"
+                        style="margin-right: 30px; margin-left: 30px; margin-bottom: 30px;">
+                        <span class="label"><a href="">JobSearch</a></span>
+                        <span class="icon">&#128269;</span>
+                    </button>
+                    <div>
+                        <div class="img"><img src="/images/frontend.png" alt="f"></div>
+                        <div class="img"><img src="/images/backend.png" alt="b"></div>
+                        <div class="img"><img src="/images/full stack.png" alt=""></div>
+                        <div class="img"><img src="/images/andriod.png" alt=""></div>
+
+                        <div class="items">
+                            <ul class="list" style="list-style: none;">
+                                <li class="list">Frontend</li>
+                                <li class="list">Backend</li>
+                                <li class="list">Fullstack</li>
+                                <li class="list">Android</li>
+
+                            </ul>
+                        </div>
+                        <section class="job-listings">
+                            <p></p>
+                        </section>
+                        <section class="profiles">
+
+                            <img src="/images/person.png" alt="Profile" width="100px">
+                            <div class="profile">
+                                <p><b>Full Stack Developer</b></p>
+                                <p>Company: WebWorks</p>
+                                <p>Posted: 1 day ago</p>
+                                <p>Applications Allowed: 60</p>
+                                <button class="message-button"><a href="/user/apply">Apply</a></button>
+                            </div>
+                            <img src="/images/person.png" alt="Profile 1" width="100px">
+                            <div class="profile">
+                                <p><b>Backend Developer</b></p>
+                                <p>Company: Innovatech</p>
+                                <p>Posted: 4 hours ago</p>
+                                <p>Applications Allowed: 40</p>
+                                <button class="message-button"><a href="/user/apply">Apply</a></button>
+                            </div>
+                        </section>
+                        <div class="line2"></div>
+                        <section class="profiles">
+                            <img src="/images/person.png" alt="Profile 1" width="100px">
+                            <div class="profile">
+                                <p><b>Machine Learning Engineer</b></p>
+                                <p>Company: AI Innovators</p>
+                                <p>Posted: 5 hours ago</p>
+                                <p>Applications Allowed: 35</p>
+                                <button class="message-button"><a href="/user/apply">Apply</a></button>
+                            </div>
+
+                            <img src="/images/person.png" alt="Profile" width="100px">
+                            <div class="profile">
+                                <p><b>Data Scientist</b></p>
+                                <p>Company: DataMinds</p>
+                                <p>Posted: 2 days ago</p>
+                                <p>Applications Allowed: 25</p>
+                                <button class="message-button"><a href="/user/apply">Apply</a></button>
+                            </div>
+                        </section>
+
+                    </div>
+                    <script >
+                        const timeContainer = document.getElementById("time");
+
+function updateTime() {
+  const currentTime = new Date();
+  const formattedTime = currentTime.toLocaleTimeString();
+  timeContainer.textContent = `online at: ${formattedTime}`;
+}
+
+updateTime();
+
+setInterval(updateTime, 3000);</script>
+</body>
+
+</html>

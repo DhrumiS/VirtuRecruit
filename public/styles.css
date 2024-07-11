@@ -1,0 +1,228 @@
+body {
+    background-color: white;
+    font-family: "Poppins";
+    /* font-size: medium; */
+  }
+  /* .container-fluid {
+    height: 125vh;
+  } */
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  .resume {
+    padding-left: 35%;
+    margin-top: -330px;
+  }
+  .cv {
+    margin-left: -40px;
+  }
+  .int {
+    margin-left: -40px;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  
+  /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+  .row.content {
+    height: 100%;
+  }
+  
+  /* Set gray background color and 100% height */
+  .sidenav {
+    background-color: #f1f1f1;
+    height: 100%;
+  }
+  
+  .col-sm-3 {
+    height: 100%;
+  }
+  
+  .job {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #cbdadd;
+    border: 1px solid #e3e3e3;
+    border-radius: 20px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    color: black;
+    cursor: pointer;
+  }
+  
+  .wel {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #cbdadd;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  }
+  
+  .container-fluid {
+    height: 125vh;
+  }
+  /* On small screens, set height to 'auto' for the grid */
+  @media screen and (max-width: 767px) {
+    .row.content {
+      height: auto;
+    }
+  }
+  
+  .list1 {
+    width: 90%;
+    border: 2px solid #cbdadd;
+    background-color: #cbdadd;
+    margin-left: 30px;
+    margin: 20px;
+    list-style: none;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: medium;
+  }
+  .list2 {
+    width: 90%;
+    border: 2px solid #cbdadd;
+    background-color: #cbdadd;
+    margin-left: 30px;
+    margin: 20px;
+    list-style: none;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: medium;
+  }
+  .list3 {
+    width: 90%;
+    border: 2px solid #cbdadd;
+    background-color: #cbdadd;
+    margin-left: 30px;
+    margin: 20px;
+    list-style: none;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: medium;
+  }
+  
+  .form-group {
+    padding-left: 45px;
+    font-size: 15px;
+    padding-top: 20px;
+  }
+  
+  #submit {
+    margin-left: 765px;
+  }
+  
+  input,
+  textarea {
+    background-color: #cbdadd;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+  }
+  ::placeholder {
+    color: rgb(113, 113, 113); /* Change to whatever color you prefer */
+    padding-left: 15px;
+  }
+  .jobs {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #cbdadd;
+    border: 1px solid #e3e3e3;
+    border-radius: 20px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    color: black;
+    cursor: pointer;
+  }
+  .resume {
+    padding-left: 35%;
+    margin-top: -260px;
+  }
+  .job-listings {
+    margin-top: 20px;
+    /* border: 2px solid gainsboro;
+    background-color: gainsboro; */
+    width: 100%;
+    font-size: xx-small;
+    /* padding-left: 40px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  .profiles {
+    display: flex;
+    justify-content: space-around;
+  }
+  .profiles img {
+    margin-left: 25px;
+    margin-top: 30px;
+    border-radius: 70%;
+    float: left;
+    height: 80px;
+    width: 80px;
+    margin-right: -85px;
+  }
+  
+  .profile {
+    padding: 25px;
+  }
+  .profiles p {
+    /* padding-top: 30px; */
+    font-size: smaller;
+    padding-right: 2px;
+  }
+  .message-button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    border-radius: 40px;
+    width: 90px;
+    height: 30px;
+    cursor: pointer;
+  }
+  .line2 {
+    width: 100%;
+    height: 1px;
+    background-color: #2c2929;
+    margin-top: -20px;
+  }
+  .job-search-button {
+    background-color: white;
+    /* Light blue background */
+    border: 2px solid #3f9891;
+    border-radius: 15px;
+    /* Rounded corners */
+    padding: 10px 20px;
+    font-family: sans-serif;
+    font-size: 16px;
+    color: gray;
+    /* cursor: pointer; */
+    float: left;
+  }
+  
+  .icon {
+    margin-left: 10px;
+    font-size: 18px;
+  }
+  
+  .img {
+    display: inline;
+    padding: 30px;
+    margin-right: 33px;
+    /* margin-top: 20px; */
+  }
+  .list li {
+    margin-right: 20px;
+    display: inline;
+    margin: 30px;
+    margin-left: 30px;
+    padding: 5px;
+  }
+  

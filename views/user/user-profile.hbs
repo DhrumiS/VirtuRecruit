@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+      <title>User</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="/styles.css">
+      <style>
+        /* Style for form container */
+        .container {
+          max-width: 600px; /* Adjusted max-width */
+          margin: 0 auto;
+          padding: 20px;
+          background-color: #f3f3f3;
+          border-radius: 10px;
+          overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        
+        /* Style for form headings */
+        h1 {
+          font-size: 20px; /* Adjusted font size */
+          color: #333;
+          margin-bottom: 20px;
+        }
+        
+        /* Style for form inputs */
+        .form-group {
+          margin-bottom: 20px;
+          display: flex;
+          align-items: center; /* Align items vertically */
+        }
+        
+        label {
+          font-weight: bold;
+          color: #555;
+          width: 120px; /* Fixed width for labels */
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea,    input[type="file"] {
+          flex: 1; /* Take remaining space */
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+        
+        textarea {
+          resize: vertical;
+        }
+        
+        /* Style for file inputs
+        input[type="file"] {
+          display: none;
+        } */
+
+        
+        /* Style for submit button */
+    input[type="submit"] {
+            
+      padding: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+    margin-left:270px;
+      border-radius: 5px;
+
+        }
+        
+      </style>
+    </head>
+    
+    <body>
+      <nav class="navbar navbar-inverse visible-xs">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    
+      <div class="container-fluid">
+        <div class="row content">
+          <div class="col-sm-3 sidenav" style=" background-color:#CBDADD;">
+            <h2>User</h2>
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href="/user/dashboard">Dashboard</a></li>
+              <li><a href="/user/interview">Interviews</a></li>
+              <li><a href="/user/job">Jobs</a></li>
+              <li class="active"><a href="/user/profile">My Profile</a></li>
+              <li><a href="/user/logout" class="btn btn-info btn-lg">
+                <span class="glyphicon glyphicon-log-out"></span> Log out
+              </a></li>
+            </ul>
+            <br />
+          </div>
+          <br />
+    
+          <div class="col-sm-9">
+            <div class="wel" style="box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);">
+              <h3>Hello Welcome {{user}}</h3>
+              <p id="time">Online at 8:30 pm .</p>
+            </div>
+            <div class="container">
+              <h1 style="font-size: 22px;">Personal Information Form</h1>
+              <br>
+              <form action="">
+                <div class="form-group">
+                  <label for="name">Name:</label>
+                  <input type="text" id="name" placeholder="Enter your full name " name="name">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" placeholder="Enter your email address" name="email">
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone No.:</label>
+                  <input type="text" id="phone" placeholder="Enter your phone number" name="phone">
+                </div>
+                <div class="form-group">
+                  <label for="Education">Education:</label>
+                  <input type="text" id="edu" name="edu" placeholder="Enter your qualification">
+                </div>
+                <div class="form-group">
+                  <label for="profession">Profession:</label>
+                  <input type="text" id="profession" placeholder="Enter your profession" name="profession">
+                </div>
+                <div class="form-group">
+                  <label for="resume">Resume:</label>
+                  <input type="file" id="resume" name="resume" accept=".pdf" p>
+                </div>
+                <div class="form-group">
+                  <label for="cv">CV:</label>
+                  <input type="file" id="cv" name="cv" accept=".pdf">
+                </div>
+                <div class="form-group">
+                  <label for="intro">Your intro:</label>
+                  <textarea rows="2" placeholder="Enter your short introduction here"></textarea>
+                </div>
+                <input type="submit" >
+                <!-- <div id="displayData"></div> -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>const timeContainer = document.getElementById("time");
+
+function updateTime() {
+  const currentTime = new Date();
+  const formattedTime = currentTime.toLocaleTimeString();
+  timeContainer.textContent = `online at: ${formattedTime}`;
+}
+
+updateTime();
+
+setInterval(updateTime, 3000);</script>
+    </body>
+    
+    </html>
+    

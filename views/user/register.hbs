@@ -1,0 +1,91 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+    <div id="Create Account" class="create">
+        <div class="box3">
+            <h1>Create New</h1>
+            <h1>Account</h1>
+            <h4>Already Registered? <a href="login.html">Login</a></h4>
+            <!-- Link to login page -->
+            <form id="createAccountForm" method="post" enctype="multipart/form-data" action="/user/register">
+                <label for="email">EMAIL</label>
+                <input class="form-elem" type="email" id="email" name="email" placeholder="hello@reallygreatsite.com" />
+
+                <label for="name">NAME</label>
+                <input class="form-elem" type="text" id="name" name="fullName" placeholder="Jiara Martins" />
+
+                <label for="resume">Resume</label>
+                <input type="file" class="form-elem" name="resume" accept=".pdf" />
+                <label for="cv">CV</label>
+                <input type="file" class="form-elem" name="cv" accept=".pdf" />
+
+                <label for="phone_no">Phone Number</label>
+                <input type="text" class="form-elem" name="phoneNo" placeholder="Enter your phone no." />
+
+                <label for="Education">Education</label>
+                <input type="text" class="form-elem" name="education" placeholder="Enter your education " />
+
+                <label for="Education">Intro</label>
+                <input type="text" class="form-elem" name="intro" placeholder="Enter your education " />
+
+                <label for="profession">Profession</label>
+                <input type="text" class="form-elem" name="profession" placeholder="Enter your profession" />
+
+                <label for="password">PASSWORD</label>
+                <input class="form-elem" type="password" id="password" name="password" placeholder="********" />
+
+                <input id="btn" type="submit" value="Submit" href="login.html"
+                    style="background-color: #24698b; width:80px; margin-left:230px ;font-size:larger ; padding:5px; font-weight:600" />
+                <!-- Link to create account endpoint -->
+            </form>
+        </div>
+        <div class="box4">
+            <img src="/images/virturecruit.png" alt="logo" width="450px" />
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function () {
+            $("#createAccountForm").on("submit", function (event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: $(this).attr("method"),
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        console.log(response)
+                        if (response.type == 'error') {
+                            toastr.error(response.message)
+                        }
+                        if (response.type == 'success') {
+                            location.href = response.message
+                        }
+                    },
+                    error: function (error) {
+                        toastr.error("Something went wrong")
+                    },
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

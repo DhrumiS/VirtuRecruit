@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interview Quiz</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      /* Quiz Styles */
+      body {
+        background-color: white;
+      }
+
+      #quiz {
+        margin-bottom: 20px;
+      }
+
+      .option {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .navigation {
+        margin-top: 20px;
+      }
+
+      .navigation button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      .navigation button:hover {
+        background-color: #45a049;
+      }
+
+      #result {
+        margin-top: 20px;
+        font-weight: bold;
+      }
+
+      /* Timer Styles */
+      #timer {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      html,
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Roboto", sans-serif;
+      }
+
+      .p {
+        padding-left: 20px;
+      }
+    </style>
+  </head>
+
+  <body class="w3-light-grey">
+    <!-- Page Container -->
+    <div class="w3-content w3-margin-top" style="max-width: 1400px">
+      <!-- The Grid -->
+      <div class="w3-row-padding">
+        <!-- Left Column -->
+        <div class="w3-third">
+          <div class="w3-white w3-text-grey w3-card-4">
+            <div
+              class="w3-display-container"
+              style="height: 85vh; background-color: #cbdadd; color: black"
+            ><br>
+              <p style="padding-left: 3px;">
+                <i
+                  class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"
+                ></i
+                >Company Name: Tech Innovators
+              </p>
+              <p style="padding-left: 3px;">
+                <i
+                  class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"
+                ></i
+                >Job Role: Software Engineer
+              </p>
+              <p style="padding-left: 3px;">
+                <i
+                  class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"
+                ></i
+                > A Software Engineer is responsible for designing, developing, and maintaining software applications. They collaborate with cross-functional teams to deliver high-quality software solutions.
+              </p>
+
+              <hr />
+
+              <p class="w3-large">
+                <b
+                  ><i
+                    class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"
+                  ></i
+                  >Skills Required:</b
+                >
+              </p>
+              <div class="p">
+                <p>C++</p>
+                <p>Java</p>
+                <p>SQL</p>
+                <br />
+                <br />
+              </div>
+              
+            </div>
+          </div>
+          <br />
+          <!-- End Left Column -->
+        </div>
+
+        <!-- Right Column -->
+        <div class="w3-twothird">
+          <div class="w3-container w3-card-4 w3-white w3-margin-bottom">
+            <h2 class="w3-text-grey w3-padding-16">
+              <i
+                class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"
+              ></i
+              >Quiz
+            </h2>
+            <div class="w3-container">
+              <div id="quiz">
+                <div id="category"></div>
+                <div id="question"></div>
+                <label class="option"
+                  ><input type="radio" name="option" value="0" />
+                  <span id="option0"></span
+                ></label>
+                <label class="option"
+                  ><input type="radio" name="option" value="1" />
+                  <span id="option1"></span
+                ></label>
+                <label class="option"
+                  ><input type="radio" name="option" value="2" />
+                  <span id="option2"></span
+                ></label>
+                <label class="option"
+                  ><input type="radio" name="option" value="3" />
+                  <span id="option3"></span
+                ></label>
+                <div class="navigation">
+                  <button onclick="prevQuestion()">Previous</button>
+                  <button onclick="nextQuestion()">Next</button>
+                </div>
+              </div>
+              <div id="result"></div>
+            </div>
+          </div>
+
+          <div class="w3-container w3-card-4 w3-white">
+            <p id="timer"></p>
+          </div>
+
+          <!-- End Right Column -->
+        </div>
+
+        <!-- End Grid -->
+      </div>
+
+      <!-- End Page Container -->
+    </div>
+
+    <script>
+
+  const quizzes = {
+    software_engineer: {
+      general_aptitude: [
+        {
+          question: "What is the capital of France?",
+          options: ["Berlin", "Madrid", "Paris", "Lisbon"],
+          answer: "Paris",
+        },
+        {
+          question: "Solve: 5 + 7 * 2",
+          options: ["19", "24", "14", "17"],
+          answer: "19",
+        },
+        {
+          question: "What comes next in the series: 2, 4, 8, 16, ?",
+          options: ["20", "24", "32", "36"],
+          answer: "32",
+        },
+        {
+          question: "Which pattern fits: AB, CD, EF, ?",
+          options: ["GH", "GI", "HG", "IH"],
+          answer: "GH",
+        },
+      ],
+      logical_reasoning: [
+        {
+          question:
+            "If all squares are rectangles, then all rectangles are squares. True or False?",
+          options: ["True", "False"],
+          answer: "False",
+        },
+        {
+          question:
+            "Which number should come next in the pattern: 2, 6, 12, 20, ?",
+          options: ["24", "28", "30", "36"],
+          answer: "30",
+        },
+        {
+          question: "Choose the odd one out: Dog, Cat, Lion, Car",
+          options: ["Dog", "Cat", "Lion", "Car"],
+          answer: "Car",
+        },
+      ],
+      english: [
+        {
+          question: "Choose the correct antonym for 'Vulnerable':",
+          options: ["Weak", "Strong", "Sensitive", "Fragile"],
+          answer: "Strong",
+        },
+        {
+          question:
+            "Select the correct form: She has ___ a new feature to the software.",
+          options: ["add", "added", "adds", "adding"],
+          answer: "added",
+        },
+        {
+          question: "Which sentence is grammatically correct?",
+          options: [
+            "The team has finish the project.",
+            "The team have finished the project.",
+            "The team has finished the project.",
+            "The team finishing the project.",
+          ],
+          answer: "The team has finished the project.",
+        },
+      ],
+      submit: [{
+        question: "Submit the quiz?",
+        options: ["Submit"],
+        answer: "Submit",
+      },
+    ]
+    },
+    frontend_developer: {
+      general_aptitude: [
+        {
+          question: "What is 15% of 200?",
+          options: ["20", "25", "30", "35"],
+          answer: "30",
+        },
+        {
+          question: "Solve: 12 * 12 / 4",
+          options: ["30", "36", "48", "72"],
+          answer: "36",
+        },
+        {
+          question: "Find the next number in the series: 3, 6, 12, 24, ?",
+          options: ["30", "36", "48", "60"],
+          answer: "48",
+        },
+        {
+          question: "Which pattern fits: XY, WZ, UV, ?",
+          options: ["ST", "RS", "TU", "QR"],
+          answer: "ST",
+        },
+      ],
+      logical_reasoning: [
+        {
+          question:
+            "All apples are fruits. All fruits are healthy. Therefore, all apples are healthy. True or False?",
+          options: ["True", "False"],
+          answer: "True",
+        },
+        {
+          question:
+            "What is the missing number in the series: 5, 10, 20, 40, ?",
+          options: ["50", "60", "70", "80"],
+          answer: "80",
+        },
+        {
+          question: "Find the odd one out: Car, Bus, Bicycle, Train",
+          options: ["Car", "Bus", "Bicycle", "Train"],
+          answer: "Bicycle",
+        },
+      ],
+      english: [
+        {
+          question: "Choose the correct synonym for 'Rapid':",
+          options: ["Slow", "Fast", "Calm", "Lazy"],
+          answer: "Fast",
+        },
+        {
+          question:
+            "Select the correct form: He is looking forward to ___ the project.",
+          options: ["completing", "complete", "completed", "completes"],
+          answer: "completing",
+        },
+        {
+          question: "Which sentence is grammatically correct?",
+          options: [
+            "She don't like ice cream.",
+            "She doesn't likes ice cream.",
+            "She doesn't like ice cream.",
+            "She do not like ice cream.",
+          ],
+          answer: "She doesn't like ice cream.",
+        },
+      ],
+      submit: [{
+        question: "Submit the quiz?",
+        options: ["Submit"],
+        answer: "Submit",
+      },
+    ]
+    },
+    data_scientist: {
+      general_aptitude: [
+        {
+          question: "What is 25% of 160?",
+          options: ["30", "35", "40", "45"],
+          answer: "40",
+        },
+        {
+          question: "Solve: 9 + 3 * 6 - 4 / 2",
+          options: ["25", "26", "27", "28"],
+          answer: "25",
+        },
+        {
+          question: "Find the next number in the series: 1, 4, 9, 16, ?",
+          options: ["20", "24", "25", "30"],
+          answer: "25",
+        },
+        {
+          question: "Which pattern fits: AB, DE, GH, ?",
+          options: ["IJ", "KL", "MN", "OP"],
+          answer: "KL",
+        },
+      ],
+      logical_reasoning: [
+        {
+          question:
+            "Some mammals are amphibians. All amphibians are reptiles. Therefore, some mammals are reptiles. True or False?",
+          options: ["True", "False"],
+          answer: "False",
+        },
+        {
+          question:
+            "Which number should come next in the pattern: 3, 9, 27, 81, ?",
+          options: ["243", "324", "432", "531"],
+          answer: "243",
+        },
+        {
+          question: "Choose the odd one out: Apple, Banana, Carrot, Grape",
+          options: ["Apple", "Banana", "Carrot", "Grape"],
+          answer: "Carrot",
+        },
+      ],
+      english: [
+        {
+          question: "Choose the correct antonym for 'Diligent':",
+          options: ["Lazy", "Hardworking", "Active", "Energetic"],
+          answer: "Lazy",
+        },
+        {
+          question:
+            "Select the correct form: They were ___ the new system yesterday.",
+          options: ["install", "installed", "installing", "installs"],
+          answer: "installing",
+        },
+        {
+          question: "Which sentence is grammatically correct?",
+          options: [
+            "He have finished his work.",
+            "He has finish his work.",
+            "He has finished his work.",
+            "He finishing his work.",
+          ],
+          answer: "He has finished his work.",
+        },
+      ],
+      submit: [{
+        question: "Submit the quiz?",
+        options: ["Submit"],
+        answer: "Submit",
+      },
+    ]
+    },
+  };
+
+  // Variables to track current quiz and question
+  let currentQuiz = "software_engineer";
+  let currentCategory = "general_aptitude";
+  let currentQuestionIndex = 0;
+  let userAnswers = {};
+
+  // Timer variables
+  let timer;
+  let seconds = 900; // 15 minutes
+
+  // Function to initialize the quiz
+  function initializeQuiz() {
+    displayQuestion();
+    startTimer();
+  }
+
+  // Function to display the current question
+  function displayQuestion() {
+    const quiz = quizzes[currentQuiz][currentCategory];
+    const questionObj = quiz[currentQuestionIndex];
+    document.getElementById("category").innerText = `Category: ${capitalizeFirstLetter(
+      currentCategory.replace("_", " ")
+    )}`;
+    document.getElementById("question").innerText = questionObj.question;
+    document.getElementById("option0").innerText = questionObj.options[0];
+    document.getElementById("option1").innerText = questionObj.options[1];
+    document.getElementById("option2").innerText = questionObj.options[2];
+    document.getElementById("option3").innerText = questionObj.options[3];
+  }
+
+  // Function to capitalize the first letter of a string
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  // Function to handle next question
+  function nextQuestion() {
+    saveAnswer();
+    if (currentQuestionIndex < quizzes[currentQuiz][currentCategory].length - 1) {
+      currentQuestionIndex++;
+      document.querySelector('input[name="option"]:checked').checked = false;
+
+      displayQuestion();
+    } else {
+      moveToNextCategoryOrSubmit();
+    }
+  }
+
+  // Function to handle previous question
+  function prevQuestion() {
+    if (currentQuestionIndex > 0) {
+      saveAnswer();
+      currentQuestionIndex--;
+      displayQuestion();
+    }
+  }
+
+  // Function to save user's answer
+  function saveAnswer() {
+    const selectedOption = document.querySelector('input[name="option"]:checked');
+    if (selectedOption) {
+      const answer = selectedOption.value;
+      if (!userAnswers[currentCategory]) {
+        userAnswers[currentCategory] = {};
+      }
+      userAnswers[currentCategory][currentQuestionIndex] = answer;
+    }
+  }
+
+  // Function to move to the next category or submit the quiz
+  function moveToNextCategoryOrSubmit() {
+    const categories = Object.keys(quizzes[currentQuiz]);
+    const currentCategoryIndex = categories.indexOf(currentCategory);
+    if (currentCategoryIndex < categories.length - 1) {
+      currentCategory = categories[currentCategoryIndex + 1];
+      currentQuestionIndex = 0;
+      displayQuestion();
+    } else {
+      submitQuiz();
+    }
+  }
+
+  // Function to submit the quiz
+  function submitQuiz() {
+    saveAnswer();
+    clearInterval(timer);
+    window.location.href = "/user/quizsubmitted";
+    // calculateResult()
+  }
+
+  
+  // Function to calculate the result
+  function calculateResult() {
+    let score = 0;
+    let totalQuestions = 0;
+
+    for (const category in userAnswers) {
+      if (quizzes[currentQuiz][category]) {
+        const answers = userAnswers[category];
+        for (const questionIndex in answers) {
+          const userAnswer = answers[questionIndex];
+          const correctAnswer =
+            quizzes[currentQuiz][category][questionIndex].answer;
+          if (
+            quizzes[currentQuiz][category][questionIndex].options[userAnswer] ===
+            correctAnswer
+          ) {
+            score++;
+          }
+          totalQuestions++;
+        }
+      }
+    }
+
+    const resultText = `Your score: ${score} out of ${totalQuestions}`;
+    document.getElementById("result").innerText = resultText;
+  }
+
+  // Function to start the timer
+  function startTimer() {
+    timer = setInterval(() => {
+      if (seconds > 0) {
+        seconds--;
+        displayTimer();
+      } else {
+        clearInterval(timer);
+        submitQuiz();
+      }
+    }, 1000);
+  }
+
+  // Function to display the timer
+  function displayTimer() {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    document.getElementById("timer").innerText = `Time remaining: ${minutes
+      .toString()
+      .padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
+  }
+
+  // Initialize the quiz on page load
+  window.onload = initializeQuiz;
+
+</script>
+  </body>
+</html>
+

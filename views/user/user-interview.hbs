@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/styles.css">
+
+    <style>
+        .tab {
+            background: #e0e7ed;
+            margin-top: 20px;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .tab button {
+            background: #e8e8e8;
+            color: #0d0d0d;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: background 0.3s, color 0.3s;
+            font-size: 17px;
+        }
+
+        .tab button:hover {
+            background: #eeeeee;
+            color: #51779d;
+        }
+
+        .tab button.active {
+            background: #51779d;
+            color: rgb(255, 255, 255);
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            background: rgb(255, 255, 255);
+            border: 1px solid #eaeaea;
+            border-top: none;
+        }
+
+        .jobs-container,
+        .assessment,
+        .scheduled-interviews {
+            background: #f3f6f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .jobs-container h3,
+        .assessment h3 {
+            color: #313234;
+        }
+
+        .job-role {
+            margin-bottom: 20px;
+        }
+
+        .job-role p {
+            margin: 5px 0;
+        }
+
+        .scheduled-interviews table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .scheduled-interviews th,
+        .scheduled-interviews td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .scheduled-interviews th {
+            background: #446a90;
+            color: white;
+        }
+
+        .scheduled-interviews td {
+            background: #ecf0f1;
+        }
+
+        .start-btn,
+        .reschedule-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 1px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .start-btn:hover {
+            background: #2ecc71;
+        }
+
+        .reschedule-btn {
+            background: #f39c12;
+        }
+
+        .reschedule-btn:hover {
+            background: #e67e22;
+        }
+
+        .interview-status {
+            margin-top: 20px;
+        }
+
+        .interview-status table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .interview-status th,
+        .interview-status td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .interview-status th {
+            background: #446a90;
+            color: white;
+        }
+
+        .interview-status td {
+            background: #ecf0f1;
+        }
+
+        /* Reschedule Card Styles */
+        .reschedule-card {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            /* overflow: auto; */
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .reschedule-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(88, 88, 88, 0.5);
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #2ecc71;
+        }
+
+        input {
+            border-radius: 5px;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="col-sm-3 sidenav" style="background-color:#CBDADD; height:160vh; ">
+        <h2>User</h2>
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="/user/dashboard">Dashboard</a></li>
+            <li class="active"><a href="/user/interview">Interviews</a></li>
+            <li><a href="/user/job">Jobs</a></li>
+            <li><a href="/user/profile">My Profile</a></li>
+            <li><a href="/user/logout" class="btn btn-info btn-lg">
+                    <span class="glyphicon glyphicon-log-out"></span> Log out
+                </a></li>
+        </ul>
+        <br />
+    </div>
+    <div class="col-sm-9">
+        <div class="content">
+            <div class="wel" style="box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5); margin-top: 20px;">
+                <h3>Hello Welcome {{user}}</h3>
+                <p id="time">Online at 8:30 pm .</p>
+            </div>
+
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'ScheduledInterviews')" id="defaultOpen">
+                    Scheduled Interviews
+                </button>
+                <button class="tablinks" onclick="openTab(event, 'AppliedJobs')">
+                    Assessment Status
+                </button>
+            </div>
+
+            <div id="AppliedJobs" class="tabcontent">
+                <br>
+
+                <br>
+                <h3>Assessment Status:</h3>
+                <div class="assessment">
+                    <h3>Your Assessment:</h3>
+                    <p>Rigident:</p>
+                    <p>Quiz 1 (Aptitude): 45/75</p>
+                    <p>Quiz 2 (Technical): 85/100</p>
+                    <p>Status: PASS</p>
+                </div>
+                <div class="assessment">
+                    <h3>Your Assessment:</h3>
+                    <p>MaxGen:</p>
+                    <p>Quiz 1 (Aptitude): 40/75</p>
+                    <p>Quiz 2 (Technical): 45/100</p>
+                    <p>Status: PASS</p>
+                </div>
+                <div class="assessment">
+                    <h3>Your Assessment:</h3>
+                    <p>Tech TechNishal:</p>
+                    <p>Quiz 1 (Aptitude): 50/75</p>
+                    <p>Quiz 2 (Technical): 5/100</p>
+                    <p>Status: PASS</p>
+                </div>
+            </div>
+
+            <div id="ScheduledInterviews" class="tabcontent">
+                <br>
+                <h2>Scheduled Interviews</h2>
+                <div class="scheduled-interviews">
+                    <table>
+                        <tr>
+                            <th>Job Applied</th>
+                            <th>Interview Name</th>
+                            <th>Interviewer Name</th>
+                            <th>Time</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr>
+                            <td>Software Engineer</td>
+                            <td>Technical Interview</td>
+                            <td>Aditya Vyas</td>
+                            <td>10:00 AM</td>
+                            <td>20th June 2024</td>
+                            <td>
+                                <button class="start-btn">Start Interview</button>
+                                <button class="reschedule-btn"
+                                    onclick="showRescheduleCard('Frontend Developer', 'HR Interview')">
+                                    Request Reschedule
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Frontend Developer</td>
+                            <td>HR Interview</td>
+                            <td>Dhrumi Vaidya</td>
+                            <td>02:00 PM</td>
+                            <td>21st June 2024</td>
+                            <td>
+                                <button class="start-btn">Start Interview</button>
+                                <button class="reschedule-btn"
+                                    onclick="showRescheduleCard('Frontend Developer', 'HR Interview')">
+                                    Request Reschedule
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="interview-status">
+                    <h3>Interview Status</h3>
+                    <table>
+                        <tr>
+                            <th>Job Applied</th>
+                            <th>Interview Name</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td>Software Engineer</td>
+                            <td>Technical Interview</td>
+                            <td>Pass</td>
+                        </tr>
+                        <tr>
+                            <td>Frontend Developer</td>
+                            <td>HR Interview</td>
+                            <td>Pending</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reschedule Card -->
+    <div id="rescheduleCard" class="reschedule-card">
+        <div class="reschedule-content">
+            <span class="close-btn" onclick="closeRescheduleCard()">&times;</span>
+            <h2>Request Reschedule</h2>
+            <form id="rescheduleForm">
+                <label for="newDate">New Date:</label>
+                <input type="date" id="newDate" name="newDate" required><br><br>
+
+                <label for="newTime">New Time:</label>
+                <input type="time" id="newTime" name="newTime" required><br><br>
+
+                <label for="reason">Reason for Reschedule:</label>
+                <textarea id="reason" name="reason" rows="4" required></textarea>
+                <br>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const timeContainer = document.getElementById("time");
+
+function updateTime() {
+  const currentTime = new Date();
+  const formattedTime = currentTime.toLocaleTimeString();
+  timeContainer.textContent = `online at: ${formattedTime}`;
+}
+
+updateTime();
+
+setInterval(updateTime, 3000);
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Set default tab open
+        document.getElementById("defaultOpen").click();
+
+        function showRescheduleCard(job, interview) {
+            var rescheduleCard = document.getElementById("rescheduleCard");
+            rescheduleCard.style.display = "block";
+
+            // You can store job and interview details if needed
+            document.getElementById("rescheduleForm").onsubmit = function (event) {
+                event.preventDefault();
+                alert("Request for reschedule sent successfully");
+                closeRescheduleCard();
+            };
+        }
+
+        function closeRescheduleCard() {
+            var rescheduleCard = document.getElementById("rescheduleCard");
+            rescheduleCard.style.display = "none";
+        }
+
+        // Close the reschedule card if the user clicks outside of it
+        window.onclick = function (event) {
+            var rescheduleCard = document.getElementById("rescheduleCard");
+            if (event.target == rescheduleCard) {
+                rescheduleCard.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

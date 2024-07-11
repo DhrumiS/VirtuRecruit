@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Candidate Detail - VirtueRecruit</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/rstyle.css" />
+    <script src="/recruiter.js" defer></script>
+    <style>
+      body {
+        background-color: #f5f5f5;
+        font-family: "Poppins", sans-serif;
+        margin-top: 50px;
+      }
+
+      .profile-container {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 50px;
+      }
+
+      .profile-header h2 {
+        color: #333;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .profile-header p {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .profile-section {
+        margin-bottom: 30px;
+      }
+
+      .profile-section h3 {
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .profile-section p,
+      .profile-section ul {
+        color: #666;
+        font-size: 16px;
+      }
+
+      .profile-section ul {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      .profile-section ul li {
+        background-color: #f9f9f9;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+
+      .btn-primary {
+        border-radius: 25px;
+        padding: 12px 25px;
+        font-size: 18px;
+        background-color: #6d7a9b;
+        border: none;
+        text-transform: uppercase;
+        transition: all 0.3s;
+      }
+
+      .btn-primary:hover {
+        background-color: #556175;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-fixed-top">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+              <li class="active"><a href="/hr/dashboard">Dashboard</a></li>
+                <li><a href="/hr/interview">Interview</a></li>
+                <li><a href="/hr/postjob">My Profile</a></li>
+                <li><a href="/hr/job">Jobs</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/hr/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="profile-container">
+            <div class="profile-header">
+              <h2>John Doe</h2>
+              <p><strong>Email:</strong> john.doe@example.com</p>
+              <p><strong>Phone:</strong> (123) 456-7890</p>
+            </div>
+
+            <div class="profile-section">
+              <h3>Job Role</h3>
+              <p>Applied for: Software Developer</p>
+            </div>
+
+            <div class="profile-section">
+              <h3>Matched Skills</h3>
+              <ul>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>Node.js</li>
+              </ul>
+            </div>
+
+            <div class="profile-section">
+              <h3>All Skills</h3>
+              <ul>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>Node.js</li>
+                <li>Python</li>
+                <li>Project Management</li>
+                <li>Team Collaboration</li>
+              </ul>
+            </div>
+
+            <div class="profile-section">
+              <h3>Location</h3>
+              <p>City: New York</p>
+              <p>State: NY</p>
+              <p>Country: USA</p>
+            </div>
+
+            <div class="profile-section">
+              <h3>Previous Jobs</h3>
+              <p>
+                <strong>Senior Software Engineer at TechCorp</strong>
+                <br />
+                June 2018 - Present
+                <br />
+                Lead a team of developers to create and maintain web
+                applications for clients in various industries.
+              </p>
+              <p>
+                <strong>Software Developer at WebSolutions</strong>
+                <br />
+                January 2015 - May 2018
+                <br />
+                Developed and maintained several client websites and internal
+                applications using a variety of programming languages and
+                frameworks.
+              </p>
+            </div>
+
+            <div class="profile-section">
+              <h3>Overall Aptitude Score</h3>
+              <div class="score-card">
+                <p>Score: 85%</p>
+              </div>
+            </div>
+
+            <div class="profile-section">
+              <h3>Resume</h3>
+              <a href="/demo_resume.pdf" class="btn btn-primary" target="_blank"
+                >View Resume</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

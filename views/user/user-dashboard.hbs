@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>User</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse visible-xs">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav" style=" background-color:#CBDADD; height:160vh;">
+                <h2>User</h2>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="/user/dashboard">Dashboard</a></li>
+                    <li><a href="/user/interview">Interviews</a></li>
+                    <li><a href="/user/job">Jobs</a></li>
+                    <li><a href="/user/profile">My Profile</a></li>
+                    <li><a href="/user/logout" class="btn btn-info btn-lg">
+                            <span class="glyphicon glyphicon-log-out"></span> Log out
+                        </a></li>
+                </ul>
+                <br />
+            </div>
+            <br />
+
+            <div class="col-sm-9">
+                <div class="wel" style="box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);">
+                    <h3>Hello Welcome {{user}}</h3>
+                    <p id="time">Online at 8:30 pm .</p>
+                </div>
+                <div class="row">
+                    <h4 style="padding: 10px;">Trending Jobs</h4>
+
+                    <div class="col-sm-3">
+            <a href="/user/trendingjob">
+              <div class="job">
+                <h5>Job Position:</h5>
+                <p>
+                  <h4><b>Software Engineer</b></h4>
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-3">
+            <a href="/user/trendingjob">
+              <div class="job">
+                <h5>Job Position:</h5>
+                <p>
+                  <h4><b>Front-end Dev.</b></h4>
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-3">
+            <a href="/user/trendingjob">
+              <div class="job">
+                <h5>Job Position:</h5>
+                <p>
+                  <h4><b>Full Stack Dev.</b></h4>
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-3">
+            <a href="/user/trendingjob">
+              <div class="job">
+                <h5>Job Position:</h5>
+                <p>
+                  <h4><b>Data Analyst</b></h4>
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <h4 style="padding: 10px;">Applied Jobs</h4>
+          <div class="col-sm-4">
+            <a href="/user/appliedjobs?job=SDE">
+              <div class="job">
+                <p style="font-size: 16px;"> Job role : <b>SDE</b>
+                  <br><br>
+                  <i><b>TatvaSoft</b></i> : Software Engineer
+                  <br>
+                  <i><b>MediaTek</b></i>: Software Engineer
+                  <br>
+                  <i><b>Ridigent </b></i>: Software Engineer
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-4">
+            <a href="/user/appliedjobs?job=Frontend">
+              <div class="job">
+                <p style="font-size: 16px;">Job role : <b>Front-end</b>
+                  <br><br>
+                  <i><b>InfoLabz</b></i> : Frontend Developer <br>
+                  <i><b>Prodigy</b></i> : Frontend Developer<br>
+                  <i><b>MaxGen</b></i> : Frontend Developer</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-4">
+            <a href="/user/appliedjobs?job=Internship">
+              <div class="job">
+                <p style="font-size: 16px;">Job role : <b>Internship</b>
+                  <br><br>
+                  <b><i>CodChef</i></b> : Web Dev Intern <br>
+                  <b><i>BharatEp</i></b> : Full Stack Intern <br>
+                  <b><i>TechNishal</i></b> : MERN Intern <br>
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+                <div class="row">
+                    <h4 style="padding: 10px;">Your Documents</h4>
+                    <div class="col-sm-4">
+                        <div class="job">
+                            {{!-- <p id="resume"><a href="demo_resume.pdf" style="color: black;">Resume</a></p> --}}
+                            <p id="resume"><a href="/uploads/{{resume}}" target="_blank"
+                                    style="color: black;">Resume</a></p>
+
+
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="job">
+                            <p id="cv"><a href="/uploads/{{cv}}" target="_blank" style="color: black;">CV</a></p>
+                            {{!-- <p id="cv"><a href="Cv.pdf" style="color:black;">CV</a></p> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/scripts.js"></script>
+</body>
+
+</html>

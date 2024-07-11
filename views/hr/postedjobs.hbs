@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Postings - VirtueRecruit</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/rstyle.css" />
+    <script src="/recruiter.js" defer></script>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .bodystyl {
+            padding-top: 50px;
+            background-color: #fefdfd;
+            border-radius: 10px;
+            /* padding: 10px; */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .job {
+            margin-bottom: 20px;
+        }
+
+        .job-details {
+            background-color: #a5bbd2;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .job-details h3 {
+            color: #262626;
+            margin-top: 0;
+        }
+
+        .job-details p {
+            color: #2a2a2a;
+            margin-bottom: 5px;
+        }
+
+        .btn-primary {
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-size: 16px;
+            background-color: #6d7a9b;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .btn-primary:hover {
+            background-color: #556175;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/hr/dashboard">Dashboard</a></li>
+                <li><a href="/hr/interview">Interview</a></li>
+                <li><a href="/hr/profile">My Profile</a></li>
+                <li><a href="/hr/job">Jobs</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/hr/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid bodystyl">
+        <h2 style="text-align: center">Total Job Postings</h2>
+
+        {{#each jobs}}
+        <div class="job">
+            <div class="job-details">
+                <h3>Job Title:{{this.jobTitle}}</h3>
+                <p>Location: {{this.jobLocation}}</p>
+                <p>Salary: {{this.salary}}</p>
+                <p>Deadline: {{this.deadline}}</p>
+                <p>
+                    Description: {{this.jobDescription}}
+                </p>
+            </div>
+        </div>
+        {{/each}}
+
+
+        <div class="container-fluid bodystyl" id="totalJobsContainer">
+            <!-- Existing job details will be displayed here -->
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
